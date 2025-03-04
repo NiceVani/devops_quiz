@@ -1,0 +1,139 @@
+PS D:\DevOps\quiz\devops_quiz> terraform apply  
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # docker_container.my_container will be created
+  + resource "docker_container" "my_container" {
+      + attach                                      = false
+      + bridge                                      = (known after apply)
+      + command                                     = (known after apply)
+      + container_logs                              = (known after apply)
+      + container_read_refresh_timeout_milliseconds = 15000
+      + entrypoint                                  = (known after apply)
+      + env                                         = (known after apply)
+      + exit_code                                   = (known after apply)
+      + hostname                                    = (known after apply)
+      + id                                          = (known after apply)
+      + image                                       = "quizz-app:latest"
+      + init                                        = (known after apply)
+      + ipc_mode                                    = (known after apply)
+      + log_driver                                  = (known after apply)
+      + logs                                        = false
+      + must_run                                    = true
+      + name                                        = "quizz"
+      + network_data                                = (known after apply)
+      + read_only                                   = false
+      + remove_volumes                              = true
+      + restart                                     = "no"
+      + rm                                          = false
+      + runtime                                     = (known after apply)
+      + security_opts                               = (known after apply)
+      + shm_size                                    = (known after apply)
+      + start                                       = true
+      + stdin_open                                  = false
+      + stop_signal                                 = (known after apply)
+      + stop_timeout                                = (known after apply)
+      + tty                                         = false
+      + wait                                        = false
+      + wait_timeout                                = 60
+
+      + healthcheck (known after apply)
+
+      + labels (known after apply)
+
+      + ports {
+          + external = 3000
+          + internal = 3000
+          + ip       = "0.0.0.0"
+          + protocol = "tcp"
+        }
+    }
+
+  # docker_image.my_app will be created
+  + resource "docker_image" "my_app" {
+      + id          = (known after apply)
+      + image_id    = (known after apply)
+      + name        = "quizz-app:latest"
+      + repo_digest = (known after apply)
+    }
+
+  # null_resource.execute_script will be created
+  + resource "null_resource" "execute_script" {
+      + id = (known after apply)
+    }
+
+Plan: 3 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+null_resource.execute_script: Creating...
+null_resource.execute_script: Provisioning with 'local-exec'...
+null_resource.execute_script (local-exec): Executing: ["cmd" "/C" "powershell.exe ./buildImg.ps1"]
+null_resource.execute_script (local-exec): #0 building with "desktop-linux" instance using docker driver
+
+null_resource.execute_script (local-exec): #1 [internal] load build definition from Dockerfile
+null_resource.execute_script (local-exec): #1 transferring dockerfile: 294B done
+null_resource.execute_script (local-exec): #1 DONE 0.0s
+
+null_resource.execute_script (local-exec): #2 [internal] load metadata for docker.io/library/node:18-alpine
+null_resource.execute_script (local-exec): #2 DONE 0.9s
+
+null_resource.execute_script (local-exec): #3 [internal] load .dockerignore
+null_resource.execute_script (local-exec): #3 transferring context: 109B done
+null_resource.execute_script (local-exec): #3 DONE 0.0s
+
+null_resource.execute_script (local-exec): #4 [1/4] FROM docker.io/library/node:18-alpine@sha256:e0340f26173b41066d68e3fe9bfbdb6571ab3cad0a4272919a52e36f4ae56925
+null_resource.execute_script (local-exec): #4 resolve docker.io/library/node:18-alpine@sha256:e0340f26173b41066d68e3fe9bfbdb6571ab3cad0a4272919a52e36f4ae56925 0.0s done
+null_resource.execute_script (local-exec): #4 DONE 0.0s
+
+null_resource.execute_script (local-exec): #5 [internal] load build context
+null_resource.execute_script (local-exec): #5 transferring context: 8.39kB done
+null_resource.execute_script (local-exec): #5 DONE 0.0s
+
+null_resource.execute_script (local-exec): #6 [2/4] WORKDIR /app
+null_resource.execute_script (local-exec): #6 CACHED
+
+null_resource.execute_script (local-exec): #7 [3/4] COPY . .
+null_resource.execute_script (local-exec): #7 DONE 0.0s
+
+null_resource.execute_script (local-exec): #8 [4/4] RUN npm install
+null_resource.execute_script (local-exec): #8 1.648
+null_resource.execute_script (local-exec): #8 1.648 added 69 packages, and audited 70 packages in 1s
+null_resource.execute_script (local-exec): #8 1.648
+null_resource.execute_script (local-exec): #8 1.648 14 packages are looking for funding
+null_resource.execute_script (local-exec): #8 1.648   run `npm fund` for details
+null_resource.execute_script (local-exec): #8 1.650
+null_resource.execute_script (local-exec): #8 1.650 found 0 vulnerabilities
+null_resource.execute_script (local-exec): #8 1.651 npm notice
+null_resource.execute_script (local-exec): #8 1.651 npm notice New major version of npm available! 10.8.2 -> 11.1.0
+null_resource.execute_script (local-exec): #8 1.651 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.1.0
+null_resource.execute_script (local-exec): #8 1.651 npm notice To update run: npm install -g npm@11.1.0
+null_resource.execute_script (local-exec): #8 1.651 npm notice
+null_resource.execute_script (local-exec): #8 DONE 1.8s
+
+null_resource.execute_script (local-exec): #9 exporting to image
+null_resource.execute_script (local-exec): #9 exporting layers
+null_resource.execute_script (local-exec): #9 exporting layers 0.2s done
+null_resource.execute_script (local-exec): #9 exporting manifest sha256:06cf53abf4e55b16e8f56d57c24f820cd32c6aa332c9ce01d98f7276ae3b0a3e done
+null_resource.execute_script (local-exec): #9 exporting config sha256:7fdd9eab1fe1b86bfd8445ec8f1de763d9dece2d631b91e82f9d8df821816984 done        
+null_resource.execute_script (local-exec): #9 exporting attestation manifest sha256:a9bc2e9381b055f7a8a57a3370beb00ca2995e69ce0ac89f539eb5307d5aa726 0.0s done
+null_resource.execute_script (local-exec): #9 exporting manifest list sha256:089d3784a48af7a93a5cad0b372d4ebaed6b9c8cb43dd226acfa928a487d50aa done 
+null_resource.execute_script (local-exec): #9 naming to docker.io/library/quizz-app:latest done
+null_resource.execute_script (local-exec): #9 unpacking to docker.io/library/quizz-app:latest
+null_resource.execute_script (local-exec): #9 unpacking to docker.io/library/quizz-app:latest 0.3s done
+null_resource.execute_script (local-exec): #9 DONE 0.5s
+null_resource.execute_script (local-exec): Docker image 'quizz-app' built successfully.
+null_resource.execute_script: Creation complete after 4s [id=8559646400649482054]
+docker_image.my_app: Creating...
+docker_image.my_app: Creation complete after 0s [id=sha256:089d3784a48af7a93a5cad0b372d4ebaed6b9c8cb43dd226acfa928a487d50aaquizz-app:latest]
+docker_container.my_container: Creating...
+docker_container.my_container: Creation complete after 0s [id=049d2f8a1083fc8ae2a09c1c4378f8893b59b291c505a7fdb2191549d1d4733b]
+
+Apply complete! Resources: 3 added, 0 changed, 0 destroyed.

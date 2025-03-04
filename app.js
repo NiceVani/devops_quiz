@@ -20,5 +20,5 @@ app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });
 app.get('/name', (req, res) => {
-    res.send('Hello my name is xxx yyyy');
+    res.send('My ID is 67317347 Hello my name is Vanichaya Pansa-ard ');
 });
